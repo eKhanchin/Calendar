@@ -1,7 +1,7 @@
 #!/usr/intel/bin/python -w
 
 
-'''Created by: Eugeny Khanchin - 04 Apr 2020
+'''Created by: Eugeny Khanchin - 07 Jun 2020
 
 This module contains a calendar widget.
 '''
@@ -51,7 +51,7 @@ class CalendarWidget:
 
         self.master = master
         master.title('Calendar')
-        master.geometry('526x275+200+100')
+        master.geometry('520x275+200+100')
         master.resizable(False, False)
 
         # App's private variables
@@ -66,15 +66,15 @@ class CalendarWidget:
         self._configure_style()
 
         ttk.Label(master, text='Select date and time').place(x=10, y=10)
-        ttk.Frame(master, height=3, borderwidth=1, relief='flat', \
+        ttk.Frame(master, height=2, borderwidth=1, relief='flat', \
             style='Hor.TFrame')\
-            .place(x=0, y=40, width=529)
+            .place(x=0, y=37, width=523)
         ttk.Frame(master, width=1, borderwidth=1, relief='flat', \
             style='Ver.TFrame')\
-            .place(x=323, y=50, height=221)
+            .place(x=317, y=50, height=221)
 
         selected_date_label = ttk.Label(master, text='')
-        selected_date_label.place(x=357, y=149)
+        selected_date_label.place(x=359, y=149)
         self._selected_date_label = selected_date_label
 
         # Date fields
@@ -85,7 +85,7 @@ class CalendarWidget:
 
         ttk.Button(master, text='Select', command=self._select_date_time, \
             style='Select.TButton')\
-            .place(x=366, y=226, width=120, height=40)
+            .place(x=360, y=226, width=120, height=40)
 
     def _get_month_names(self):
         '''Returns list of month names'''
@@ -125,7 +125,7 @@ class CalendarWidget:
         style.configure('TButton', background='#e0dfde')
 
         # Custom style
-        style.configure('TLabel', font=('default', 14))
+        # style.configure('TLabel', font=('default', 14))
 
         style.configure('Hor.TFrame', background='#6a9eba')
         style.configure('Ver.TFrame', background='#000000')
@@ -137,27 +137,27 @@ class CalendarWidget:
         style.configure('Day.Clicked.TButton', background='#8cd0f5', \
             relief='flat')
         style.configure('Select.TButton', background='#6a9eba', \
-            foreground='#ffffff', font=('', 14, 'bold'))
+            foreground='#ffffff', font=('', 12, 'bold'))
 
     def _create_date_fields(self):
         '''Creates all relevant to date fields'''
 
         # Month selection fields
-        ttk.Label(self.master, text='Month:').place(x=10, y=53)
+        ttk.Label(self.master, text='Month:').place(x=10, y=50)
         self._month = StringVar()
         month_combobox = ttk.Combobox(self.master, width=9, \
             textvariable=self._month)
-        month_combobox.place(x=64, y=55)
+        month_combobox.place(x=58, y=50)
         month_combobox.bind('<<ComboboxSelected>>', self._enable_month_days)
         self._month_combobox = month_combobox
         self._load_months()
 
         # Year selection fields
-        ttk.Label(self.master, text='Year:').place(x=183, y=53)
+        ttk.Label(self.master, text='Year:').place(x=183, y=50)
         self._year = StringVar()
         year_combobox = ttk.Combobox(self.master, width=9, \
             textvariable=self._year)
-        year_combobox.place(x=228, y=55)
+        year_combobox.place(x=222, y=50)
         year_combobox.bind('<<ComboboxSelected>>', self._enable_month_days)
         self._year_combobox = year_combobox 
         self._load_years()
@@ -165,8 +165,8 @@ class CalendarWidget:
         # Days of the month buttons
         days_buttons = []
         days = 31
-        x = 38
-        y = 90
+        x = 35
+        y = 87
         for i in range(1, days+1):
             # Creates a button with disabled state
             button = ttk.Button(self.master, text=str(i), style='Day.TButton')
@@ -179,7 +179,7 @@ class CalendarWidget:
             # Updates the x,y location
             x += 35
             if i % 7 == 0:
-                x = 38
+                x = 35
                 y += 35
         self._days_buttons = days_buttons
 
@@ -187,25 +187,25 @@ class CalendarWidget:
         '''Creates all relevant to time fields'''
 
         # Hour selection fields
-        ttk.Label(self.master, text='Hours').place(x=337, y=53)
+        ttk.Label(self.master, text='Hours').place(x=331, y=50)
         hour_combobox = ttk.Combobox(self.master, width=3, values=[*range(0,24)])
-        hour_combobox.place(x=339, y=73)
+        hour_combobox.place(x=333, y=70)
         hour_combobox.bind('<<ComboboxSelected>>', self._load_time)
         self._hour_combobox = hour_combobox
 
         # Minutes selection fields
-        ttk.Label(self.master, text='Minutes').place(x=394, y=53)
+        ttk.Label(self.master, text='Minutes').place(x=388, y=50)
         minutes_combobox = ttk.Combobox(self.master, width=3, \
             values=[*range(0,60)])
-        minutes_combobox.place(x=402, y=73)
+        minutes_combobox.place(x=396, y=70)
         minutes_combobox.bind('<<ComboboxSelected>>', self._load_time)
         self._minutes_combobox = minutes_combobox
 
         # Seconds selection fields
-        ttk.Label(self.master, text='Seconds').place(x=462, y=53)
+        ttk.Label(self.master, text='Seconds').place(x=456, y=50)
         seconds_combobox = ttk.Combobox(self.master, width=3, \
             values=[*range(0,60)])
-        seconds_combobox.place(x=473, y=73)    
+        seconds_combobox.place(x=467, y=70)    
         seconds_combobox.bind('<<ComboboxSelected>>', self._load_time)
         self._seconds_combobox = seconds_combobox
 
