@@ -125,8 +125,6 @@ class CalendarWidget:
         style.configure('TButton', background='#e0dfde')
 
         # Custom style
-        # style.configure('TLabel', font=('default', 14))
-
         style.configure('Hor.TFrame', background='#6a9eba')
         style.configure('Ver.TFrame', background='#000000')
 
