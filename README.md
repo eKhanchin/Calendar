@@ -1,5 +1,5 @@
 # Calendar
-This is a calendar widget made for python3 scripts that use tkinter module.
+This is a calendar widget made for python3 programs that use tkinter module.
 
 ## Screenshot
 
